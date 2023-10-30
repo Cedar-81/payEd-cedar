@@ -169,7 +169,9 @@ export default function Budgets() {
                 +
               </Paper>
               {isLoading
-                ? [...Array(6)].map((_, index) => <Skeleton radius={"lg"} />)
+                ? [...Array(6)].map((_, index) => (
+                    <Skeleton key={index} radius={"lg"} />
+                  ))
                 : Budgets?.data?.map((item) => {
                     return (
                       <Link key={item.id} href={"/budgets/" + item.id}>

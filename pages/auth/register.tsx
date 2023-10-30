@@ -8,7 +8,7 @@ export default function Register() {
         <Text className="font-[600] text-3xl text-center">Pay Ed</Text>
         <Box className="text-center">
           <Text className="font-[600] text-3xl">
-            Now let's create a division
+            Now {"let's"} create a division
           </Text>
           <small className="text-gray-400">
             A division is a part of a school cycle, e.g. first semester
