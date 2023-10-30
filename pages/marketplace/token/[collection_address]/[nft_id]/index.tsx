@@ -149,11 +149,13 @@ function NftDetail({ nft }: Props) {
                     <Text size="sm">Current price</Text>
                     <Group>
                       <Text className="text-3xl">{`${
-                        directListing &&
-                        directListing[0]?.currencyValuePerToken.displayValue
+                        directListing
+                          ? directListing[0]?.currencyValuePerToken.displayValue
+                          : ""
                       } ${
-                        directListing &&
-                        directListing[0]?.currencyValuePerToken.symbol
+                        directListing
+                          ? directListing[0]?.currencyValuePerToken.symbol
+                          : ""
                       }`}</Text>
                       {/* <Text size="sm">N200,000</Text> */}
                     </Group>
