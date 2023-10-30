@@ -141,8 +141,9 @@ function NftDetail({ nft }: Props) {
               >
                 <Box className="p-3 bg-purple-300">
                   Sales ends{" "}
-                  {directListing &&
-                    formatTimestamp(directListing[0].endTimeInSeconds)}
+                  {directListing
+                    ? formatTimestamp(directListing[0].endTimeInSeconds)
+                    : ""}
                 </Box>
                 <Box className="p-3 flex flex-col justify-between h-full">
                   <Box className="py-6">
