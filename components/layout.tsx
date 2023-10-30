@@ -143,7 +143,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Topnav />
           <div>{children}</div>
         </section>
-        {location.pathname === "/" && (
+        {/* {location.pathname === "/" && (
           <Paper
             p={"xl"}
             className="w-80 pt-10 bg-gradient-to-r from-purple-100 to-purple-50 mx-8 hidden md:block"
@@ -166,7 +166,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Box>
             </Stack>
           </Paper>
-        )}
+        )} */}
       </main>
     </>
   );

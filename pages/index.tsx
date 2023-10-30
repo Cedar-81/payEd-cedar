@@ -14,7 +14,7 @@ export default function Home() {
       </Head>
       <Layout>
         {/* <Topnav /> */}
-        <section className={""}>
+        <section className={"space-y-10 pt-8"}>
           <StatsGrid />
           <Paper withBorder p={"md"} radius={"md"} className="">
             <Group justify="space-between" align="center" className="py-8">
