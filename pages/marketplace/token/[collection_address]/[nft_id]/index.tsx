@@ -102,78 +102,73 @@ function NftDetail({ nft }: Props) {
 
   return (
     <Layout>
-      {nft.metadata && (
-        <Box className="p-10 pt-6">
-          <Skeleton
-            visible={loadingMarketplace && loadingDirectListing}
-            className="h-[100vh] w-[100%]"
-          >
-            <Box className="pb-6">
-              <Group>
-                <Text className="text-3xl">
-                  {nft.metadata && nft.metadata.name}
-                </Text>
-                <ConnectWallet className="border-purple-700 border-2 text-purple-700" />
-              </Group>
-              <Text>
-                created by <span>{truncateNFTContractAddress(nft.owner)}</span>
+      <Box className="p-10 pt-6">
+        <Skeleton
+          visible={loadingMarketplace && loadingDirectListing}
+          className="h-[100vh] w-[100%]"
+        >
+          <Box className="pb-6">
+            <Group>
+              <Text className="text-3xl">
+                {nft.metadata ? nft.metadata.name : ""}
               </Text>
+              <ConnectWallet className="border-purple-700 border-2 text-purple-700" />
+            </Group>
+            <Text>
+              created by <span>{truncateNFTContractAddress(nft.owner)}</span>
+            </Text>
+          </Box>
+          <SimpleGrid
+            cols={{ base: 1, lg: 2 }}
+            className=" max-w-[60rem] h-full"
+          >
+            <Box className="h-[35rem] rounded-md max-w-[28rem] relative overflow-hidden">
+              <ThirdwebNftMedia
+                metadata={nft.metadata}
+                className="!object-cover !w-full !h-full"
+              />
             </Box>
-            <SimpleGrid
-              cols={{ base: 1, lg: 2 }}
-              className=" max-w-[60rem] h-full"
-            >
-              <Box className="h-[35rem] rounded-md max-w-[28rem] relative overflow-hidden">
-                <ThirdwebNftMedia
-                  metadata={nft.metadata}
-                  className="!object-cover !w-full !h-full"
-                />
-              </Box>
-              <SimpleGrid cols={1}>
-                <Paper
-                  withBorder
-                  className="border-2 rounded-md overflow-hidden"
-                >
-                  <Box className="p-3 bg-purple-300">Description</Box>
-                  <Text className="p-3">{nft && nft.metadata.description}</Text>
-                </Paper>
-                <Paper
-                  withBorder
-                  className="border-2 flex h-max flex-col rounded-md overflow-hidden"
-                >
-                  <Box className="p-3 bg-purple-300">
-                    Sales ends{" "}
-                    {directListing &&
-                      formatTimestamp(directListing[0].endTimeInSeconds)}
+            <SimpleGrid cols={1}>
+              <Paper withBorder className="border-2 rounded-md overflow-hidden">
+                <Box className="p-3 bg-purple-300">Description</Box>
+                <Text className="p-3">{nft && nft.metadata.description}</Text>
+              </Paper>
+              <Paper
+                withBorder
+                className="border-2 flex h-max flex-col rounded-md overflow-hidden"
+              >
+                <Box className="p-3 bg-purple-300">
+                  Sales ends{" "}
+                  {directListing &&
+                    formatTimestamp(directListing[0].endTimeInSeconds)}
+                </Box>
+                <Box className="p-3 flex flex-col justify-between h-full">
+                  <Box className="py-6">
+                    <Text size="sm">Current price</Text>
+                    <Group>
+                      <Text className="text-3xl">{`${
+                        directListing &&
+                        directListing[0]?.currencyValuePerToken.displayValue
+                      } ${
+                        directListing &&
+                        directListing[0]?.currencyValuePerToken.symbol
+                      }`}</Text>
+                      {/* <Text size="sm">N200,000</Text> */}
+                    </Group>
                   </Box>
-                  <Box className="p-3 flex flex-col justify-between h-full">
-                    <Box className="py-6">
-                      <Text size="sm">Current price</Text>
-                      <Group>
-                        <Text className="text-3xl">{`${
-                          directListing &&
-                          directListing[0]?.currencyValuePerToken.displayValue
-                        } ${
-                          directListing &&
-                          directListing[0]?.currencyValuePerToken.symbol
-                        }`}</Text>
-                        {/* <Text size="sm">N200,000</Text> */}
-                      </Group>
-                    </Box>
-                    <Button
-                      onClick={buyListing}
-                      variant="default"
-                      className="w-full bg-purple-900 text-white"
-                    >
-                      Buy
-                    </Button>
-                  </Box>
-                </Paper>
-              </SimpleGrid>
+                  <Button
+                    onClick={buyListing}
+                    variant="default"
+                    className="w-full bg-purple-900 text-white"
+                  >
+                    Buy
+                  </Button>
+                </Box>
+              </Paper>
             </SimpleGrid>
-          </Skeleton>
-        </Box>
-      )}
+          </SimpleGrid>
+        </Skeleton>
+      </Box>
     </Layout>
   );
 }
