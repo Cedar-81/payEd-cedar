@@ -48,6 +48,7 @@ function Sell() {
           ) : data && data.length > 0 ? (
             data.map((nft, index) => (
               <ProfileItemCard
+                key={index}
                 showModal={() => {
                   setSelectedNFT(nft);
                   open();
