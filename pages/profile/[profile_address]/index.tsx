@@ -56,7 +56,7 @@ function Sell() {
               />
             ))
           ) : (
-            <Text>You currently don't have any NFTs in this wallet</Text>
+            <Text>You currently don&lsquo;t have any NFTs in this wallet</Text>
           )}
         </SimpleGrid>
 
