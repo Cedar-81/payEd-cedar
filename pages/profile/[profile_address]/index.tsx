@@ -40,7 +40,7 @@ function Sell() {
           <Text className="text-2xl">Sell NFTs</Text>
           <Text className="text">List your nfts for sale in marketplace</Text>
         </Box>
-        <SimpleGrid cols={4}>
+        <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }}>
           {isLoading ? (
             [...Array(20)].map((_, index) => (
               <Skeleton key={index} height={"312px"} width={"100%"} />

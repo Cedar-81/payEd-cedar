@@ -158,7 +158,10 @@ export default function Budgets() {
           </Box>
           <Box className="space-y-6">
             <Text className="text-xl">Budgets</Text>
-            <SimpleGrid cols={4} className="flex-col md:flex-row">
+            <SimpleGrid
+              cols={{ base: 1, sm: 2, lg: 3 }}
+              className="flex-col md:flex-row"
+            >
               <Paper
                 className=" h-[136px] text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
                 withBorder

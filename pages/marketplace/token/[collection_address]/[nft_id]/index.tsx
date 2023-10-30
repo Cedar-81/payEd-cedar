@@ -109,24 +109,31 @@ function NftDetail({ nft }: Props) {
         >
           <Box className="pb-6">
             <Group>
-              <Text className="text-3xl">{nft.metadata.name}</Text>
+              <Text className="text-3xl">
+                {nft.metadata && nft.metadata.name}
+              </Text>
               <ConnectWallet className="border-purple-700 border-2 text-purple-700" />
             </Group>
             <Text>
               created by <span>{truncateNFTContractAddress(nft.owner)}</span>
             </Text>
           </Box>
-          <SimpleGrid cols={2} className=" max-w-[60rem] h-full">
+          <SimpleGrid
+            cols={{ base: 1, lg: 2 }}
+            className=" max-w-[60rem] h-full"
+          >
             <Box className="h-[35rem] rounded-md max-w-[28rem] relative overflow-hidden">
               <ThirdwebNftMedia
-                metadata={nft.metadata}
+                metadata={nft.metadata && nft.metadata}
                 className="!object-cover !w-full !h-full"
               />
             </Box>
             <SimpleGrid cols={1}>
               <Paper withBorder className="border-2 rounded-md overflow-hidden">
                 <Box className="p-3 bg-purple-300">Description</Box>
-                <Text className="p-3">{nft.metadata.description}</Text>
+                <Text className="p-3">
+                  {nft.metadata && nft.metadata.description}
+                </Text>
               </Paper>
               <Paper
                 withBorder
