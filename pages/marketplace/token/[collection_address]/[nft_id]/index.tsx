@@ -100,6 +100,8 @@ function NftDetail({ nft }: Props) {
     return `${truncatedStart}...${truncatedEnd}`;
   }
 
+  if (!nft.metadata) return <p>Loading...</p>;
+
   return (
     <Layout>
       <Box className="p-10 pt-6">
