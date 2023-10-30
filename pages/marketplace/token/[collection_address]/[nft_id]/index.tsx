@@ -131,7 +131,9 @@ function NftDetail({ nft }: Props) {
             <SimpleGrid cols={1}>
               <Paper withBorder className="border-2 rounded-md overflow-hidden">
                 <Box className="p-3 bg-purple-300">Description</Box>
-                <Text className="p-3">{nft && nft.metadata.description}</Text>
+                <Text className="p-3">
+                  {nft.metadata ? nft.metadata.description : ""}
+                </Text>
               </Paper>
               <Paper
                 withBorder
