@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: any) {
     >
       <QueryClientProvider client={queryClient}>
         <ThirdwebProvider
-          clientId={process.env.CLIENT_ID}
+          clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
           activeChain={activeChain}
         >
           <MantineProvider theme={theme}>

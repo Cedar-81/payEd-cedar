@@ -39,7 +39,7 @@ export default function MarketplaceList({
   return (
     <Box className="relative space-y-4 px-8 pb-10">
       <Text className="text-2xl">Discover</Text>
-      <SimpleGrid cols={3}>
+      <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }}>
         {isLoading ? (
           [...Array(20)].map((_, index) => (
             <Skeleton key={index} height={"312px"} width={"100%"} />
