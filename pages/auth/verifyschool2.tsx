@@ -37,7 +37,9 @@ export default function Signup() {
                   <Text className="text-center text-2xl font-[600]">
                     Welcome Aboard
                   </Text>
-                  <small className="text-gray-400">Let's get you set up</small>
+                  <small className="text-gray-400">
+                    Let&apos;s get you set up
+                  </small>
                 </Box>
                 <TextInput
                   label="Enter school name"
@@ -98,34 +100,30 @@ export default function Signup() {
         </Flex>
       </main>
       {visible && (
-        <Overlay
-          color="#000"
-          backgroundOpacity={0.65}
-          children={
-            <Container className="text-center">
-              <AspectRatio ratio={16 / 9}>
-                <Stack gap={"xl"}>
-                  <Box className="bg-white p-8 w-28 mx-auto rounded-full">
-                    <Image src={"./check.svg"} />
-                  </Box>
-                  <Text className="text-3xl text-white font-[600]">
-                    Verification successful
-                  </Text>
-                  <small className="text-white">
-                    Account verified successfully
-                  </small>
-                  <Button
-                    onClick={() => setVisible((v) => !v)}
-                    variant="filled"
-                    className="bg-purple-400 text-white rounded"
-                  >
-                    Continue
-                  </Button>
-                </Stack>
-              </AspectRatio>
-            </Container>
-          }
-        />
+        <Overlay color="#000" backgroundOpacity={0.65}>
+          <Container className="text-center">
+            <AspectRatio ratio={16 / 9}>
+              <Stack gap={"xl"}>
+                <Box className="bg-white p-8 w-28 mx-auto rounded-full">
+                  <Image src={"./check.svg"} />
+                </Box>
+                <Text className="text-3xl text-white font-[600]">
+                  Verification successful
+                </Text>
+                <small className="text-white">
+                  Account verified successfully
+                </small>
+                <Button
+                  onClick={() => setVisible((v) => !v)}
+                  variant="filled"
+                  className="bg-purple-400 text-white rounded"
+                >
+                  Continue
+                </Button>
+              </Stack>
+            </AspectRatio>
+          </Container>
+        </Overlay>
       )}
     </>
   );

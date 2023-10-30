@@ -28,10 +28,12 @@ export default function VerifySchool() {
                 <Text className="text-center text-2xl font-[600]">
                   Verify School
                 </Text>
-                <small className="text-gray-400">Let's get you set up</small>
+                <small className="text-gray-400">
+                  Let&apos;s get you set up
+                </small>
               </Box>
               <small>
-                Let's verify you're a registered institution. Please{" "}
+                Let&apos;s verify you&apos;re a registered institution. Please{" "}
                 <span className="font-[500]">upload a verifiable document</span>{" "}
                 e.g Registration certificate, tax id etc.
               </small>

@@ -21,7 +21,7 @@ import { useRouter } from "next/router";
 import { getExpenses, createExpense, seedBudget } from "../../api/expenses";
 import { abbreviateNumber } from "../../api/importantFunctions";
 
-export default function () {
+export default function BudgetDetail() {
   const { query } = useRouter();
   const { budget_id } = query;
   const id = budget_id as string;

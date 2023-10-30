@@ -34,7 +34,7 @@ export default function Signup() {
   return (
     <main className="py-4">
       <Flex align={"center"} className="pl-10">
-        <div className="bg-purple-200 p-6 rounded-md w-1/2 h-[90vh]">
+        <div className="hidden md:block bg-purple-200 p-6 rounded-md w-1/2 h-[90vh]">
           <Image src={"../payed.png"} w={"full"} className="h-full" />
         </div>
         <section className="w-1/2 h-screen flex justify-center items-center">
@@ -45,7 +45,9 @@ export default function Signup() {
               </Text>
               <Box className="text-center">
                 <Text className="text-center text-2xl font-[600]">Login</Text>
-                <small className="text-gray-400">Let's get you back in</small>
+                <small className="text-gray-400">
+                  Let&apos;s get you back in
+                </small>
               </Box>
               <Box>
                 <TextInput

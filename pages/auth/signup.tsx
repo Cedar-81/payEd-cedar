@@ -28,7 +28,9 @@ export default function Signup() {
                 <Text className="text-center text-2xl font-[600]">
                   Welcome Aboard
                 </Text>
-                <small className="text-gray-400">Let's get you set up</small>
+                <small className="text-gray-400">
+                  Let&apos;s get you set up
+                </small>
               </Box>
               <Box>
                 <TextInput
