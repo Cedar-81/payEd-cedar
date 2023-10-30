@@ -123,10 +123,14 @@ function NftDetail({ nft }: Props) {
             className=" max-w-[60rem] h-full"
           >
             <Box className="h-[35rem] rounded-md max-w-[28rem] relative overflow-hidden">
-              <ThirdwebNftMedia
-                metadata={nft.metadata}
-                className="!object-cover !w-full !h-full"
-              />
+              {nft.metadata ? (
+                <ThirdwebNftMedia
+                  metadata={nft.metadata}
+                  className="!object-cover !w-full !h-full"
+                />
+              ) : (
+                ""
+              )}
             </Box>
             <SimpleGrid cols={1}>
               <Paper withBorder className="border-2 rounded-md overflow-hidden">
