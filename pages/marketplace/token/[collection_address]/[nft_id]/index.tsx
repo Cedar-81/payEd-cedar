@@ -124,16 +124,14 @@ function NftDetail({ nft }: Props) {
           >
             <Box className="h-[35rem] rounded-md max-w-[28rem] relative overflow-hidden">
               <ThirdwebNftMedia
-                metadata={nft.metadata && nft.metadata}
+                metadata={nft.metadata}
                 className="!object-cover !w-full !h-full"
               />
             </Box>
             <SimpleGrid cols={1}>
               <Paper withBorder className="border-2 rounded-md overflow-hidden">
                 <Box className="p-3 bg-purple-300">Description</Box>
-                <Text className="p-3">
-                  {nft.metadata && nft.metadata.description}
-                </Text>
+                <Text className="p-3">{nft && nft.metadata.description}</Text>
               </Paper>
               <Paper
                 withBorder
@@ -155,7 +153,7 @@ function NftDetail({ nft }: Props) {
                         directListing &&
                         directListing[0]?.currencyValuePerToken.symbol
                       }`}</Text>
-                      <Text size="sm">N200,000</Text>
+                      {/* <Text size="sm">N200,000</Text> */}
                     </Group>
                   </Box>
                   <Button
