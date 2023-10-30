@@ -4,8 +4,7 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   if (
-    !req.nextUrl.pathname.startsWith("/auth") ||
-    !req.nextUrl.pathname.startsWith("/public")
+    !req.nextUrl.pathname.startsWith("/auth") 
   ) {
     // We need to create a response and hand it to the supabase client to be able to modify the response headers.
     const res = NextResponse.next();
