@@ -50,6 +50,10 @@ export default function Signup() {
                 </small>
               </Box>
               <Box>
+                <Text>
+                Email:admin@admin.com 
+                Password: admin1234 
+                </Text>
                 <TextInput
                   label="Enter Admin Email"
                   value={user.email}
