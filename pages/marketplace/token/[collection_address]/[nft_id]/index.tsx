@@ -138,7 +138,7 @@ function NftDetail({ nft }: Props) {
               <Paper withBorder className="border-2 rounded-md overflow-hidden">
                 <Box className="p-3 bg-purple-300">Description</Box>
                 <Text className="p-3">
-                  {nft.metadata ? nft.metadata.description : ""}
+                  {nft.metadata ? nft.metadata.description?.toString().trim() == "" ? "No description was added for this item." : nft.metadata.description?.toString().trim() : "No description was added for this item."}
                 </Text>
               </Paper>
               <Paper
@@ -155,15 +155,13 @@ function NftDetail({ nft }: Props) {
                   <Box className="py-6">
                     <Text size="sm">Current price</Text>
                     <Group>
-                      <Text className="text-3xl">{`${
-                        directListing
+                      <Text className="text-3xl">{`${directListing
                           ? directListing[0]?.currencyValuePerToken.displayValue
-                          : ""
-                      } ${
-                        directListing
+                          : "Getting price..."
+                        } ${directListing
                           ? directListing[0]?.currencyValuePerToken.symbol
                           : ""
-                      }`}</Text>
+                        }`}</Text>
                       {/* <Text size="sm">N200,000</Text> */}
                     </Group>
                   </Box>
@@ -200,7 +198,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   try {
     contractMetadata = await contract.metadata.get();
-  } catch (e) {}
+  } catch (e) { }
 
   return {
     props: {

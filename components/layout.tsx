@@ -37,10 +37,10 @@ import { useRouter } from "next/router";
 import { useDisclosure } from "@mantine/hooks";
 
 const mockdata = [
-  { label: "Dashboard", link: "/", icon: IconList },
+  { label: "Dashboard", link: "/dashboard", icon: IconList },
   { label: "Budgets", link: "/budgets", icon: IconCurrencyEthereum },
-  { label: "Streams", icon: IconDna2, link: "/streams" },
-  { label: "Marketplace", link: "/marketplace", icon: IconDiamond },
+  { label: "Income Streams", icon: IconDna2, link: "/streams" },
+  { label: "NFT Marketplace", link: "/marketplace", icon: IconDiamond },
   // {
   //   label: "Transactions",
   //   icon: IconCpu,
@@ -113,20 +113,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="" content={""} />
         <meta name="" content="" />
       </Head>
-      <main className="md:flex h-[100vh] max-h-[100vh] overflow-hidden">
+      <main className="md:flex h-[100vh] max-h-[100vh] overflow-x-hidden overflow-y-auto">
         {/* <Button className="bg-white text-black rounded">
         </Button> */}
         <button className="md:hidden p-4" onClick={open}>
           <IconMenu2 />
         </button>
-        <nav className={`${classes.navbar} h-[100vh] max-h-[100vh]`}>
+        <nav className={`${classes.navbar} !h-full !max-h-full`}>
           <div className={classes.header}>
             <Text className="">Pay Ed</Text>
           </div>
-          <Text className="py-4">Menu</Text>
+          {/* <Text className="py-4">Menu</Text> */}
           <ScrollArea className={classes.links}>
             <div
-              style={{ fontWeight: "lighter" }}
+              style={{ fontWeight: "bold" }}
               className={`${classes.linksInner}`}
             >
               {links}

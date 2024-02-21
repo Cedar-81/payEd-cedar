@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -8,86 +9,90 @@ import {
   Text,
 } from "@mantine/core";
 import {
-  MARKETPLACE_ADDRESS,
-  NFT_COLLECTION_ADDRESS,
-} from "../const/addresses";
-import {
   DirectListingV3,
-  NFT,
   ThirdwebNftMedia,
-  useContract,
-  useValidDirectListings,
 } from "@thirdweb-dev/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type Props = {
   nft: DirectListingV3;
 };
 
 export default function MarketplaceItemCard({ nft }: Props) {
-  // const { contract: marketplace, isLoading: loadingMarketplace } = useContract(
-  //   MARKETPLACE_ADDRESS,
-  //   "marketplace-v3"
-  // );
-  // const { data: directListing, isLoading: loadingDirectListing } =
-  //   useValidDirectListings(marketplace, {
-  //     tokenContract: NFT_COLLECTION_ADDRESS,
-  //     tokenId: nft.metadata.id,
-  //   });
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-  function truncateNFTContractAddress(
+  const truncateNFTContractAddress = (
     address: string,
     startLength = 6,
     endLength = 4
-  ) {
+  ) => {
     if (address.length !== 42) {
-      return "Invalid Address"; // Check if the address length is not 42 characters
+      return "Invalid Address";
     }
 
     const truncatedStart = address.slice(0, startLength);
     const truncatedEnd = address.slice(-endLength);
 
     return `${truncatedStart}...${truncatedEnd}`;
-  }
+  };
+
+  useEffect(() => {
+    if (isLoading) {
+      // Simulate an asynchronous operation (replace with your logic)
+      const timeoutId = setTimeout(() => {
+        // Redirect to the new page using router.push
+        router.push(
+          `/marketplace/token/${nft.assetContractAddress}/${nft.asset.id}`
+        );
+      }, 2000);
+
+      // Cleanup the timeout to avoid memory leaks
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isLoading, nft.assetContractAddress, nft.asset.id, router]);
+
+  // useEffect(() => {
+  //    // Reset loading state to false after the operation completes
+  //    setIsLoading(false);
+  // })
+
+  const handleButtonClick = () => {
+    // Set loading state to true when button is clicked
+    setIsLoading(true);
+  };
 
   return (
-    <Link
-      key={nft.asset.id}
-      href={`/marketplace/token/${nft.assetContractAddress}/${nft.asset.id}`}
-    >
-      <Paper withBorder radius="md" className=" overflow-hidden">
-        <Box className="h-[10rem] overflow-hidden">
-          <ThirdwebNftMedia
-            metadata={nft.asset}
-            className="!object-cover !w-full !h-full"
-          />
+    <Paper withBorder radius="md" className=" overflow-hidden">
+      <Box className="h-[10rem] overflow-hidden">
+        <ThirdwebNftMedia metadata={nft.asset} className="!object-cover !w-full !h-full" />
+      </Box>
+      <Box className="space-y-4 px-4 py-4">
+        <Box>
+          <Text size="lg" className="font-medium">
+            {nft.asset.name}
+          </Text>
+          <Text size="sm">
+            created by: <span>{truncateNFTContractAddress(nft.creatorAddress)}</span>
+          </Text>
         </Box>
-        <Box className="space-y-4 px-4 py-4">
+        <Skeleton></Skeleton>
+        <Group justify="space-between">
           <Box>
-            <Text size="lg" className="font-medium">
-              {nft.asset.name}
-            </Text>
-            <Text size="sm">
-              created by:{" "}
-              <span>{truncateNFTContractAddress(nft.creatorAddress)}</span>
-            </Text>
+            <Text size="sm">Price:</Text>
+            <Text size="lg">{`${nft.currencyValuePerToken.displayValue} ${nft?.currencyValuePerToken.symbol}`}</Text>
           </Box>
-          <Skeleton></Skeleton>
-          <Group justify="space-between">
-            <Box>
-              <Text size="sm">Price:</Text>
-              <Text size="lg">{`${nft.currencyValuePerToken.displayValue} ${nft?.currencyValuePerToken.symbol}`}</Text>
-            </Box>
-
-            <Button
-              variant="default"
-              className="border-purple-800 text-purple-800 "
-            >
-              View
-            </Button>
-          </Group>
-        </Box>
-      </Paper>
-    </Link>
+          <Button
+            variant="default"
+            className="border-purple-800 text-purple-800 "
+            onClick={handleButtonClick}
+            disabled={isLoading}
+          >
+            {isLoading ? "Loading..." : "View"}
+          </Button>
+        </Group>
+      </Box>
+    </Paper>
   );
 }

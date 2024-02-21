@@ -12,7 +12,7 @@ type Props = {
 export function StatsGridBudget({ data }: Props) {
   const stats = data.map((stat) => {
     return (
-      <Paper className="w-60" withBorder p="md" radius="md" key={stat.title}>
+      <Paper className="w-full md:w-60" withBorder p="md" radius="md" key={stat.title}>
         <Group justify="space-between">
           <Text size="xs" c="dimmed" className={classes.title}>
             {stat.title}

@@ -37,7 +37,7 @@ function Topnav() {
       <Flex align={"center"} justify={"space-between"} className="px-6 ">
         {/* <TextInput leftSection={<IconSearch />} placeholder="Search" /> */}
         <Flex align={"center"} className="gap-4" justify={"space-between"}>
-          <Text className="text-xl font-medium mr-4">
+          <Text className="text-xl hidden lg:flex font-medium mr-4">
             University of Nigeria Nsukka
           </Text>
           <Button variant="default">
@@ -52,7 +52,7 @@ function Topnav() {
               radius="xl"
             />
 
-            <div style={{ flex: 1 }}>
+            <div className="hidden md:block" style={{ flex: 1 }}>
               <Text size="sm" fw={500}>
                 {User && User.data && User.data[0].username}
               </Text>

@@ -9,7 +9,7 @@ import {
   useContract,
   useCreateDirectListing,
 } from "@thirdweb-dev/react";
-import { Box, Input, Stack } from "@mantine/core";
+import { Box, Input, Stack, Notification } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { useRouter } from "next/router";
 
@@ -26,7 +26,7 @@ type DirectFormData = {
   endDate: Date;
 };
 
-function ListingForm({ nft }: Props) {
+function ListingForm({ nft, close }: Props) {
   const router = useRouter();
   const { contract: marketplace } = useContract(
     MARKETPLACE_ADDRESS,
@@ -39,10 +39,11 @@ function ListingForm({ nft }: Props) {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [endDate, setEndDate] = useState<Date | null>(new Date());
   const [price, setPrice] = useState<string>("0.01");
+  const [error, setError] = useState<string | null>(null);
 
   async function checkAndProvideApproval() {
     console.log(price);
-    if (price.trim().length == 0 || price == "0") return;
+    if (price.trim().length === 0 || price === "0") return;
     const hasApproval = await nftCollection?.call("isApprovedForAll", [
       nft.owner,
       MARKETPLACE_ADDRESS,
@@ -62,9 +63,36 @@ function ListingForm({ nft }: Props) {
     return true;
   }
 
+  const showErrorNotification = (errorMessage: string) => {
+    setError(errorMessage);
+  };
+
+
   async function handleSubmitDirect() {
+    setError(null); // Reset error state before attempting the operation
+
+    if (!startDate || !endDate) {
+      showErrorNotification("Please enter both start and end dates.");
+      return null;
+    }
+
+    const currentDate = new Date();
+    
+    // if (startDate < currentDate) {
+    //   console.log("here 1", startDate, currentDate, new Date(startDate) == currentDate, endDate > startDate, new Date(startDate))
+    //   showErrorNotification("Start date should be greater than or equal to the current date.");
+    //   return null;
+    // }
+
+    if (endDate <= startDate) {
+      console.log("here 2", endDate)
+      showErrorNotification("End date should be greater than the start date.");
+      return null;
+    }
+
     await checkAndProvideApproval();
-    if (startDate && endDate) {
+
+    try {
       const txResult = await createDirectListing({
         assetContractAddress: NFT_COLLECTION_ADDRESS,
         tokenId: nft.metadata.id,
@@ -73,12 +101,18 @@ function ListingForm({ nft }: Props) {
         endTimestamp: endDate,
       });
 
+      close()
+
       return txResult;
+    } catch (error) {
+      console.log(error)
+      showErrorNotification("An error occurred while creating the listing.");
+      return null;
     }
   }
 
   return (
-    <Box className="flex flex-col !justify-between h-full ">
+    <Box className="flex flex-col !justify-between h-full">
       <Stack>
         <Input.Wrapper label="Listing Price">
           <Input
@@ -101,6 +135,15 @@ function ListingForm({ nft }: Props) {
           placeholder="Enter end date"
         />
       </Stack>
+      {error && (
+        <Notification
+          title="Error"
+          color="red"
+          onClose={() => setError(null)}
+        >
+          {error}
+        </Notification>
+      )}
       <Web3Button
         className="!bg-purple-800 !text-white"
         contractAddress={MARKETPLACE_ADDRESS}
@@ -109,6 +152,14 @@ function ListingForm({ nft }: Props) {
         }}
         onSuccess={(txResult) => {
           close();
+        }}
+        onError={(err) => {
+          setError(err.message || "An error occurred.");
+
+          // Clear the error state after 5 seconds (adjust the time as needed)
+          setTimeout(() => {
+            setError(null);
+          }, 5000);
         }}
       >
         Create Direct Listing

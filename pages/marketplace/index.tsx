@@ -22,12 +22,15 @@ export default function Marketplace() {
 
   return (
     <Layout>
-      <MarketplaceHeader />
-      <MarketplaceList
-        isLoading={isLoading}
-        data={data}
-        emptyText={"No NFTs found"}
-      />
+      <div className="border-2 border-red-700">
+        <MarketplaceHeader />
+        <MarketplaceList
+          isLoading={isLoading}
+          data={data}
+          emptyText={"No NFTs found"}
+        />
+
+      </div>
     </Layout>
   );
 }

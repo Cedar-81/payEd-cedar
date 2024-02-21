@@ -91,11 +91,11 @@ export function MarketplaceHeader() {
         </Group>
       </Group>
 
-      <Group grow justify="space-between" className="w-full mt-10">
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {info.map((item, index) => (
           <MarketplaceInfoCard key={index} item={item} />
         ))}
-      </Group>
+      </div>
     </Paper>
   );
 }

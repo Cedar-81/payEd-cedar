@@ -33,7 +33,7 @@ export function StatsGrid() {
     );
   });
   return (
-    <Paper withBorder className={" !p-6 !mx-6 !space-y-6"}>
+    <Paper withBorder className={" !p-6 md:!mx-6 !space-y-6"}>
       <Text className="text-xl">Total Income</Text>
       <Flex wrap={"wrap"} align={"center"} gap={"md"}>
         {stats}

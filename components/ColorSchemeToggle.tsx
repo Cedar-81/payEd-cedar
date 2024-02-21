@@ -1,5 +1,5 @@
 import { Button, Box, useMantineColorScheme } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconMoon, IconSunHigh } from "@tabler/icons-react";
 
 export function ColorSchemeToggle() {
@@ -11,8 +11,11 @@ export function ColorSchemeToggle() {
     dark ? setColorScheme("dark") : setColorScheme("light");
   };
 
+  useEffect(() => setColorScheme("dark"), [dark])
+
   return (
-    <Box>
+    <>
+      {/* <Box>
       {dark ? (
         <Button onClick={updateTheme} variant="default">
           <IconMoon />
@@ -22,9 +25,7 @@ export function ColorSchemeToggle() {
           <IconSunHigh />
         </Button>
       )}
-      {/* <Button variant="default" onClick={() => setColorScheme("auto")}>
-        Auto
-      </Button> */}
-    </Box>
+    </Box> */}
+    </>
   );
 }
