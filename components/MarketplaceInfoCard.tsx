@@ -13,7 +13,7 @@ type Props = {
 
 export default function MarketplaceInfoCard({ item }: Props) {
   return (
-    <Paper withBorder className={`bg-transparent border-gray-500 px-3 py-4`}>
+    <Paper withBorder className={`bg-transparent border-gray-500 px-3 py-4 `}>
       <Group>
         <Paper
           withBorder

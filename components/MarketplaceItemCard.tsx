@@ -78,9 +78,9 @@ export default function MarketplaceItemCard({ nft }: Props) {
           </Text>
         </Box>
         <Skeleton></Skeleton>
-        <Group justify="space-between">
+        <Group justify="space-between" className="">
           <Box>
-            <Text size="sm">Price:</Text>
+            <Text size="sm" className="">Price:</Text>
             <Text size="lg">{`${nft.currencyValuePerToken.displayValue} ${nft?.currencyValuePerToken.symbol}`}</Text>
           </Box>
           <Button

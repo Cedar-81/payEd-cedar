@@ -136,7 +136,7 @@ function NftDetail({ nft }: Props) {
             </Box>
             <SimpleGrid cols={1}>
               <Paper withBorder className="border-2 rounded-md overflow-hidden">
-                <Box className="p-3 bg-purple-300">Description</Box>
+                <Box className="p-3 bg-purple-800 font-bold">Description</Box>
                 <Text className="p-3">
                   {nft.metadata ? nft.metadata.description?.toString().trim() == "" ? "No description was added for this item." : nft.metadata.description?.toString().trim() : "No description was added for this item."}
                 </Text>
@@ -145,7 +145,7 @@ function NftDetail({ nft }: Props) {
                 withBorder
                 className="border-2 flex h-max flex-col rounded-md overflow-hidden"
               >
-                <Box className="p-3 bg-purple-300">
+                <Box className="p-3 bg-purple-800 font-bold">
                   Sales ends{" "}
                   {directListing
                     ? formatTimestamp(directListing[0].endTimeInSeconds)

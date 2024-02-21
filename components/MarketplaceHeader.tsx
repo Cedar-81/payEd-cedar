@@ -59,7 +59,7 @@ export function MarketplaceHeader() {
       <Group justify="space-between">
         <Box className="space-y-2">
           <Group align="end">
-            <Text className="text-3xl font-medium">PayEd NFT Marketplace</Text>
+            <h1 className="!text-3xl font-medium">PayEd NFT Marketplace</h1>
             <ConnectWallet className="border-purple-700 border-2 text-purple-700" />
             {/* <Button
               variant="default"
