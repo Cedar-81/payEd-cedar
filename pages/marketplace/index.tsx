@@ -22,7 +22,6 @@ export default function Marketplace() {
 
   return (
     <Layout>
-      <div className="border-2">
         <MarketplaceHeader />
         <MarketplaceList
           isLoading={isLoading}
@@ -30,7 +29,6 @@ export default function Marketplace() {
           emptyText={"No NFTs found"}
         />
 
-      </div>
     </Layout>
   );
 }
