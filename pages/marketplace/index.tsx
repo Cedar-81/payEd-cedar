@@ -22,7 +22,7 @@ export default function Marketplace() {
 
   return (
     <Layout>
-      <div className="border-2 border-red-700">
+      <div className="border-2">
         <MarketplaceHeader />
         <MarketplaceList
           isLoading={isLoading}
